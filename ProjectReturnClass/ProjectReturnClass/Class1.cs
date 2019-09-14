@@ -12,11 +12,11 @@ namespace ProjectReturnClass
 
     {
         //fields
-        private static int _returnId=0;
+        private static int _returnId=1;
         private string _PurposeofReturn;
-       // private string _statusOfReturn;
         private string _noOfReturn;
         private DateTime _dateOfReturn;
+       
 
         public static int ReturnId { get => _returnId; set => _returnId = value; }
 
@@ -32,7 +32,7 @@ namespace ProjectReturnClass
                 Console.WriteLine("5: wrong Product shipped");
                 _PurposeofReturn = Console.ReadLine();
 
-                Regex regex = new Regex("^[12345]$");
+                Regex regex = new Regex("^[1-5]+$");
                 bool b = regex.IsMatch(value);
                 if (b == true)
                 {
@@ -41,19 +41,19 @@ namespace ProjectReturnClass
                     {
                         _PurposeofReturn = "Unsatisfactory Product";
                     }
-                    if(a==2)
+                    else if(a==2)
                     {
                         _PurposeofReturn = "Defective product";
                     }
-                    if(a == 3)
+                    else if(a == 3)
                     {
                         _PurposeofReturn = "Incomplete Product";
                     }
-                    if (a == 4)
+                    else if (a == 4)
                     {
                         _PurposeofReturn = "Wrong Product Ordered";
                     }
-                    if (a == 5)
+                    else if (a == 5)
                     {
                         _PurposeofReturn = "wrong Product shipped";
                     }
@@ -61,7 +61,7 @@ namespace ProjectReturnClass
                 }
                 else
                 {
-                    throw new Exception("incorrect returnid");
+                    throw new Exception("Invalid purpose of return");
                 }
 
             }
@@ -90,20 +90,43 @@ namespace ProjectReturnClass
         }
 
         public DateTime DateOfReturn { get => DateOfReturn; set => DateOfReturn = value; }
-       
+
         //constructor
-        public ReturnOnlineOrder (int NoOfReturn, int PurposeOfReturn)
+        public ReturnOnlineOrder()
+        {
+
+        }
+
+
+
+        public ReturnOnlineOrder (int NoOfReturn, string PurposeOfReturn)
         {
             this.NoOfReturn = _noOfReturn;
             this.PurposeOfReturn = _PurposeofReturn;
-            
+           
         }
+
         
         //method
-        InitiateReturn(orderid, productid)
+        public int ReturnValue(int orderId, int ProductId, int NoOfQuantity)
         {
-            ReturnId 
+            Order order = new Order();
+            Product
+            Console.WriteLine("Enter the OrderId");
+
         }
+
+        public int ConfirmReturnOrder(string ReturnConfirmation)
+        {
+            if(ReturnConfirmation=="Yes")
+            {
+                _returnId++;
+                DateOfReturn = DateTime.Now;
+            }
+            return _returnId;
+        }
+       
+       
 
 
     }
